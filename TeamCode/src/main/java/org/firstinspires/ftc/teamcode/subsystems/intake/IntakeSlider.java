@@ -13,14 +13,11 @@ public class IntakeSlider extends SonicSubsystemBase {
 
     private CRServo servo1;
 
-    private CRServo servo2;
-
     private Telemetry telemetry;
 
     public IntakeSlider(HardwareMap hardwareMap, Telemetry telemetry) {
         /* instantiate motors */
-        this.servo1  = hardwareMap.get(CRServo.class,"IntakeServo1");
-        this.servo2  = hardwareMap.get(CRServo.class,"IntakeServo2");
+        this.servo1  = hardwareMap.get(CRServo.class,"IntakeServos");
 
         this.telemetry = telemetry;
     }
@@ -50,25 +47,20 @@ public class IntakeSlider extends SonicSubsystemBase {
     }
 
     public void Expand() {
-        this.servo1.setPower(-1);
-        this.servo2.setPower(1);
+        this.servo1.setPower(1);
     }
 
     public void Collapse() {
-        this.servo1.setPower(1);
-        this.servo2.setPower(-1);
+        this.servo1.setPower(-1);
     }
 
     public void Hold() {
         this.servo1.setPower(0.0);
-        this.servo2.setPower(0.0);
     }
 
     public void AutoExpand() {
         this.servo1.setPower(-1);
-        this.servo2.setPower(1);
 
         this.servo1.setPower(0);
-        this.servo2.setPower(0);
     }
 }
